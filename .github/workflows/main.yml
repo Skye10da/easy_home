@@ -25,9 +25,9 @@ jobs:
           architecture: x64
       - name: Create env.dart
         run: |
-            echo "const String bearerToken = '${ secrets.BEARER_TOKEN }';" >> lib/env.dart
-            echo "var servceAccount = ${ secrets.SERVICE_ACCOUNT };" >> lib/env.dart
-            echo "const String projectName = '${ secrets.PROJECT_NAME }';" >> lib/env.dart
+            echo "const String bearerToken = '${{ secrets.BEARER_TOKEN }}';" >> lib/env.dart
+            echo "var servceAccount = ${{ secrets.SERVICE_ACCOUNT }};" >> lib/env.dart
+            echo "const String projectName = '${{ secrets.PROJECT_NAME }}';" >> lib/env.dart
     
     
       - run: flutter build apk --release --split-per-abi
