@@ -67,7 +67,7 @@ Easily connect with property owners, agents, or other users through the app to a
 ### Installation
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/easy-home.git
+   git clone https://github.com/Skye10da/easy_home.git
    ```
 2. Navigate into the project directory:
    ```
