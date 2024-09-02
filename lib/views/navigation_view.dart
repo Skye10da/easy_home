@@ -1,8 +1,8 @@
 import 'package:easy_home/constant/routes.dart';
-// import 'package:easy_home/views/property/advance_search.dart';
+import 'package:easy_home/views/property/advance_search.dart';
 import 'package:easy_home/views/property/favourite_property_vew.dart';
 import 'package:easy_home/views/property/home_page.dart';
-import 'package:easy_home/views/test_notification.dart';
+// import 'package:easy_home/views/test_notification.dart';
 import 'package:easy_home/views/user/user_dashboard.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class _NavigationViewState extends State<NavigationView> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
-    const NotificaionTestVeiw(),
+    const AdvancedSearchPage(),
     const FavoritePropertiesPage(),
     const DashboardPage(),
   ];

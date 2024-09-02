@@ -318,33 +318,22 @@ class AddPropertyPageState extends State<AddPropertyPage> {
         'views': 0,
         'createdAt': Timestamp.now(),
       };
+      print(propertyData);
+      await _firestoreService.addProperty(propertyData: propertyData);
 
-      String result =
-          await _firestoreService.addProperty(propertyData: propertyData);
-
-      if (result == "Success") {
-        showSuccessNotification(context, "Property added successfully!");
-        setState(() {
-          _formKey.currentState!.reset();
-          _images.clear();
-          _amenities.clear();
-          _utilities.clear();
-        });
-        Future.delayed(
-            const Duration(
-              seconds: 1,
-            ), () {
-          Navigator.of(context).pop();
-        });
-      } else {
-        showErrorNotification(context, result);
-        Future.delayed(
-            const Duration(
-              seconds: 1,
-            ), () {
-          Navigator.of(context).pop();
-        });
-      }
+      showSuccessNotification(context, "Property added successfully!");
+      setState(() {
+        _formKey.currentState!.reset();
+        _images.clear();
+        _amenities.clear();
+        _utilities.clear();
+      });
+      Future.delayed(
+          const Duration(
+            seconds: 1,
+          ), () {
+        Navigator.of(context).pop();
+      });
     } catch (e) {
       setState(() {
         _errorMessage = 'Failed to add property: $e';

@@ -113,36 +113,38 @@ class _OwnerPropertyDetailsPageState extends State<OwnerPropertyDetailsPage> {
               children: <Widget>[
                 // Photo carousel
                 SizedBox(
-                  height: 300.0,
+                  height: size.hp(50),
                   child: Swiper(
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FullScreenImageView(
-                                  imageUrls: property.photos,
-                                  initialIndex: index,
-                                ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FullScreenImageView(
+                                imageUrls: property.photos,
+                                initialIndex: index,
                               ),
-                            );
-                          },
-                          child: CachedNetworkImage(
-                            imageUrl: property.photos[index],
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            placeholder: (context, url) => const Center(
-                                child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          ),
-                        );
-                      },
-                      itemCount: property!.photos.length,
-                      pagination: const SwiperPagination(),
-                      control: const SwiperControl(),
-                      layout: SwiperLayout.DEFAULT),
+                            ),
+                          );
+                        },
+                        child: CachedNetworkImage(
+                          imageUrl: property.photos[index],
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: size.hp(55),
+                          placeholder: (context, url) =>
+                              const Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
+                      );
+                    },
+                    itemCount: property!.photos.length,
+                    pagination: const SwiperPagination(),
+                    control: const SwiperControl(),
+                    layout: SwiperLayout.DEFAULT,
+                  ),
                 ),
                 const SizedBox(height: 16.0),
                 Padding(
@@ -171,6 +173,7 @@ class _OwnerPropertyDetailsPageState extends State<OwnerPropertyDetailsPage> {
                       const SizedBox(height: 8.0),
                       ResponsiveContainer(
                         maxWidth: size.wp(80),
+                        wrapHeight: true,
                         child: Container(
                           decoration: const BoxDecoration(
                             border: Border(),
@@ -187,7 +190,8 @@ class _OwnerPropertyDetailsPageState extends State<OwnerPropertyDetailsPage> {
                       const SizedBox(height: 8.0),
                       ResponsiveContainer(
                         maxWidth: size.wp(80),
-                        height: size.hp(10),
+                        // height: size.hp(10),
+                        wrapHeight: true,
                         child: Container(
                           decoration: const BoxDecoration(
                             border: Border(),

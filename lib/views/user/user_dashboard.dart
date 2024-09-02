@@ -154,18 +154,18 @@ class DashboardPageState extends State<DashboardPage> {
               _buildMetrics(),
               const SizedBox(height: 32.0),
               const Text(
-                'All Properties',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16.0),
-              _buildAllProperties(),
-              const SizedBox(height: 32.0),
-              const Text(
                 'Daily Performance',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16.0),
               _buildDailyPerformanceChart(),
+              const SizedBox(height: 32.0),
+              const Text(
+                'All Properties',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16.0),
+              _buildAllProperties(),
             ],
           ),
         ),
@@ -200,7 +200,7 @@ class DashboardPageState extends State<DashboardPage> {
             );
           },
         ),
-        const SizedBox(height: 32.0),
+        // const SizedBox(height: 16.0),
       ],
     );
   }

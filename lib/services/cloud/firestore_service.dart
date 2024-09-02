@@ -18,7 +18,7 @@ class FirestoreService {
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
-  final String propertyId = const Uuid().v4();
+  late String propertyId;
   Future<void> createUser({
     required String userId,
     required Map<String, dynamic> userData,
@@ -48,34 +48,34 @@ class FirestoreService {
     });
   }
 
-  Future<String> addProperty({
+  Future<void> addProperty({
     required Map<String, dynamic> propertyData,
   }) async {
     try {
       propertyData['id'] = propertyId;
+      print(propertyId);
       await _db.collection('properties').doc(propertyId).set(propertyData);
+      print("here");
       // Fetch user data
-      String userId = propertyData['userId'];
-      DocumentSnapshot userDoc =
-          await _db.collection('users').doc(userId).get();
-      UserModel user =
-          UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
+      // String userId = propertyData['userId'];
+      // DocumentSnapshot userDoc =
+      //     await _db.collection('users').doc(userId).get();
+      // UserModel user =
+      //     UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
 
-      // Notify followers
-      for (String followerId in user.followers) {
-        await UserService().sendNotification(
-          userId: followerId,
-          title: 'New Property Posted',
-          message:
-              '${user.firstName} ${user.lastName} has posted a new property.',
-        );
-      }
-      return "Success";
+      // // Notify followers
+      // for (String followerId in user.followers) {
+      //   await UserService().sendNotification(
+      //     userId: followerId,
+      //     title: 'New Property Posted',
+      //     message:
+      //         '${user.firstName} ${user.lastName} has posted a new property.',
+      //   );
+      // }
     } catch (e) {
       if (kDebugMode) {
         print('Error adding property: $e');
       }
-      return 'Error adding property';
     }
   }
 
@@ -335,11 +335,11 @@ class FirestoreService {
   Future<List<String>> uploadImages({required List<XFile> images}) async {
     try {
       final List<String> imageUrls = [];
+      propertyId = const Uuid().v4();
       for (var image in images) {
         final ref = FirebaseStorage.instance
             .ref()
-            .child('property_images')
-            .child('$propertyId/${const Uuid().v4()}.jpg');
+            .child("property_images/$propertyId/${const Uuid().v4()}.jpg");
         await ref.putFile(File(image.path));
         final url = await ref.getDownloadURL();
         imageUrls.add(url);

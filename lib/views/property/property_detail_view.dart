@@ -82,9 +82,9 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Property Details'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Property Details'),
+      // ),
       body: FutureBuilder<PropertyModel?>(
         future: _property,
         builder: (context, snapshot) {
@@ -102,7 +102,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
               children: <Widget>[
                 // Photo carousel
                 SizedBox(
-                  height: 300.0,
+                  height: size.hp(45),
                   child: Swiper(
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
@@ -119,7 +119,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                           },
                           child: CachedNetworkImage(
                             imageUrl: property.photos[index],
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                             width: double.infinity,
                             placeholder: (context, url) => const Center(
                                 child: CircularProgressIndicator()),
@@ -181,16 +181,18 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                         ),
                       ),
                       const SizedBox(height: 8.0),
-                      Text(
-                        '#${property.price}',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
+                      ResponsiveContainer(
+                        maxWidth: size.wp(80),
+                        wrapHeight: true,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                              bottomRight: Radius.circular(10)),
+                          child: Text(
+                            'Price: #${property.price} / year',
+                            style: const TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 8.0),
-                      Text('Views: ${property.views}'),
                       const SizedBox(height: 8.0),
                       ResponsiveContainer(
                         maxWidth: size.wp(80),

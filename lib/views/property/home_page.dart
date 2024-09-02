@@ -108,6 +108,7 @@ class _HomePageState extends State<HomePage> {
                                   imageUrl: properties[index].photos[0],
                                   fit: BoxFit.fill,
                                   width: double.infinity,
+                                  height: size.hp(35),
                                   placeholder: (context, url) => const Center(
                                       child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
@@ -130,7 +131,8 @@ class _HomePageState extends State<HomePage> {
                                       children: <Widget>[
                                         ResponsiveContainer(
                                           maxWidth: size.wp(15),
-                                          height: size.hp(10),
+                                          // height: size.hp(10),
+                                          wrapHeight: true,
                                           child: ClipRRect(
                                             borderRadius:
                                                 const BorderRadius.only(
@@ -154,7 +156,8 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         ResponsiveContainer(
                                           maxWidth: size.wp(40),
-                                          height: size.hp(10),
+                                          // height: size.hp(10),
+                                          wrapHeight: true,
                                           child: ClipRRect(
                                             borderRadius:
                                                 const BorderRadius.only(
@@ -163,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                                             child: Align(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                  'Price: #${properties[index].price} / month'),
+                                                  'Price: #${properties[index].price} / year'),
                                             ),
                                           ),
                                         ),
@@ -176,7 +179,8 @@ class _HomePageState extends State<HomePage> {
                                       children: [
                                         ResponsiveContainer(
                                           maxWidth: size.wp(65),
-                                          height: size.hp(10),
+                                          wrapHeight: true,
+                                          // height: size.hp(10),
                                           child: Align(
                                             child: Text(
                                                 'Location: ${properties[index].location.values}'),

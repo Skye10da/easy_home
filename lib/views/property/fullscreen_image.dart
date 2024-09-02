@@ -28,8 +28,6 @@ class FullScreenImageView extends StatelessWidget {
         ),
       ),
       body: Swiper(
-        itemHeight: MediaQuery.of(context).size.height,
-        itemWidth: MediaQuery.of(context).size.width,
         index: initialIndex,
         itemBuilder: (BuildContext context, int index) {
           return CachedNetworkImage(
